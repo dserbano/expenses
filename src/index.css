@@ -1,0 +1,17 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #07575b;
+}
+
+.title {
+    text-align: center;
+    font-size: 3em;
+    color: whitesmoke;
+}
+
+
+
+
+

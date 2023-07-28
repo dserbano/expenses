@@ -1,0 +1,6 @@
+{
+	"extends": ["tslint-config-prettier"],
+	"rules": {
+		"react-hooks-nesting": "error"
+	}
+}
