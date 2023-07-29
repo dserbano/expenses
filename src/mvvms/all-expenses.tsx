@@ -55,17 +55,15 @@ export class AllExpensesMVVM extends Component {
         console.log(category);
     }
 
-    public sortByName = (event) => {
-        console.log( event.target.value);
-        let expenses = listSort.sortByString(this.state.expenses, "name", event.target.value == "Ascending"? true : false);
-        console.log(expenses);
-        this.setState({expenses: [...expenses], sort: {name: event.target.value, group: this.state.sort.group}, filter: {...this.state.filter}});
-    }
 
     public sortByGroup = (event) => {
-        console.log( event.target.value);
-        let expenses = listSort.sortByString(this.state.expenses, "group", event.target.value == "Ascending"? true : false);
-        this.setState({expenses: expenses, sort: {group: event.target.value, name: this.state.sort.name}, filter: {...this.state.filter}});
+        if (event.target.value != "Sort") {
+            console.log( event.target.value);
+            let expenses = listSort.sortByString(this.state.expenses, "group", event.target.value == "Ascending"? true : false);
+            this.setState({expenses: expenses, sort: {group: event.target.value}, filter: {...this.state.filter}});
+        } else {
+            this.allExpenses();
+        }
 
     }
 
@@ -90,24 +88,14 @@ export class AllExpensesMVVM extends Component {
                         <tr>
                             <th>
                                 <Form.Select 
-                                    value={this.state.sort.name} 
-                                    onChange={this.sortByName}>
-                                    <option key="Sort" value="Sort">Sort</option>
-                                    <option key="Ascending" value="Ascending">Ascending</option>
-                                    <option key="Descending" value="Descending">Descending</option>
-                                    
-                                </Form.Select>
-                            </th>
-                            <th>
-                                <Form.Select 
                                     value={this.state.sort.group} 
                                     onChange={this.sortByGroup}>
                                     <option key="Sort" value="Sort">Sort</option>
                                     <option key="Ascending" value="Ascending">Ascending</option>
                                     <option key="Descending" value="Descending">Descending</option>
                                     
-                                </Form.Select>
-                            </th>
+                                </Form.Select></th>
+                            <th></th>
                             <th>
                                 <Form.Select 
                                     value={this.state.filter.category} 
